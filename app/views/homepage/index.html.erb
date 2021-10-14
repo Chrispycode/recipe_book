@@ -2,11 +2,11 @@
 
 <% @recipes.each do |recipe| %>
     <%= link_to recipe do %>
-      <div>
-        <%= recipe.title %>
-        <%= image_tag recipe.image, size: 50 %>
-      </div>
+      <div><%= recipe.title %></div>
+      <div><%= image_tag recipe.image, size: 50 %></div>
     <% end %>
+    <%= link_to 'Bearbeiten', edit_recipe_path(recipe) %> | <%= link_to "Löschen", recipe, method: :delete, data: {confirm: "Bist du sicher?"}  %>
+    <hr>
 <% end %>
 
 <%= link_to "Neues Rezept erstellen", new_recipe_path %>

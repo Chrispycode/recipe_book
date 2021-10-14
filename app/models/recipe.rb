@@ -4,6 +4,7 @@ class Recipe < ApplicationRecord
   validate :presence_of_image
 
   def image
+    return if new_record?
     return image_url if image_url.present?
     Rails.application.routes.url_helpers.rails_blob_path(uploaded_image, only_path: true)
   end
