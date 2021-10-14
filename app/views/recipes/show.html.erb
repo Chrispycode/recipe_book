@@ -1,0 +1,24 @@
+<p>
+  <strong>Titel:</strong>
+  <%= @recipe.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @recipe.author %>
+</p>
+
+<p>
+  <strong>Bild:</strong>
+  <%= image_tag asset_path(@recipe.image_url), size: 100 %>
+</p>
+
+<p>
+  <strong>Beschreibung:</strong>
+  <%= @recipe.description %>
+</p>
+
+<p>
+  <strong>Erstellungsdatum:</strong>
+  <%= @recipe.created_at.to_s(:long) %>
+</p>

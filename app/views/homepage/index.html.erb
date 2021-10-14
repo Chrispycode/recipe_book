@@ -1,1 +1,10 @@
 <h1>Willkommen zum Rezeptbuch.</h1>
+
+<% @recipes.each do |recipe| %>
+    <%= link_to recipe do %>
+      <div>
+        <%= recipe.title %>
+        <%= image_tag recipe.image_url, size: 50 %>
+      </div>
+    <% end %>
+<% end %>
