@@ -1,5 +1,6 @@
-<h1>Editing Recipe</h1>
+<div class="d-flex justify-content-between">
+  <h1>Rezept bearbeiten</h1>
+  <%= link_to "Löschen", @recipe, method: :delete, data: {confirm: "Bist du sicher?"}, class: 'btn btn-outline-danger' %>
+</div>
 
 <%= render 'form', recipe: @recipe %>
-
-<%= link_to 'Zurück', root_path %>

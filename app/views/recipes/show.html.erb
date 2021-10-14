@@ -1,26 +1,27 @@
-<p>
-  <strong>Titel:</strong>
-  <%= @recipe.title %>
-</p>
+<div class="row justify-content-center">
+  <div class="col-md-11">
+    <%= image_tag @recipe.image, class: 'img-fluid shadow' %>
+  </div>
+</div>
 
-<p>
-  <strong>Author:</strong>
-  <%= @recipe.author %>
-</p>
-
-<p>
-  <strong>Bild:</strong>
-  <%= image_tag @recipe.image, size: 100 %>
-</p>
-
-<p>
-  <strong>Beschreibung:</strong>
-  <%= @recipe.description %>
-</p>
-
-<p>
-  <strong>Erstellungsdatum:</strong>
-  <%= @recipe.created_at.to_s(:long) %>
-</p>
-
-<%= link_to 'Zurück', root_path %>
+<div class="row justify-content-center mx-0 mt-md-n5">
+  <div class="col-md-10 card p-md-4">
+    <div class="card-body py-3 px-2">
+      <h2 class="card-title">
+        <%= @recipe.title %>
+      </h2>
+      <h3 class="card-subtitlet text-muted mb-2 row justify-content-between">
+        <div class="col">
+          <%= @recipe.author %>
+        </div>
+        <div class="col text-sm-end">
+          <%= @recipe.created_at.to_s(:long) %>
+        </div>
+      </h3>
+      <p class="card-text">
+        <%= @recipe.description %>
+      </p>
+      <%= link_to 'Zurück', :back, class: 'btn btn-outline-secondary' %>
+    </div>
+  </div>
+</div>

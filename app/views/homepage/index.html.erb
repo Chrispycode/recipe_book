@@ -1,12 +1,32 @@
-<h1>Willkommen zum Rezeptbuch.</h1>
+<section class="text-center container">
+  <div class="row">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h2 class="fw-light">Willkommen zum Rezeptbuch</h2>
+      <%= link_to "Neues Rezept erstellen", new_recipe_path, class: "btn btn-sm btn-primary" %>
+    </div>
+  </div>
+</section>
+<div class="album py-4">
+  <div class="container-lg">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+      <% @recipes.each do |recipe| %>
+        <div class="col">
+          <div class="card shadow-sm">
+            <%= image_tag recipe.image, class: 'img-fluid' %>
 
-<% @recipes.each do |recipe| %>
-    <%= link_to recipe do %>
-      <div><%= recipe.title %></div>
-      <div><%= image_tag recipe.image, size: 50 %></div>
-    <% end %>
-    <%= link_to 'Bearbeiten', edit_recipe_path(recipe) %> | <%= link_to "Löschen", recipe, method: :delete, data: {confirm: "Bist du sicher?"}  %>
-    <hr>
-<% end %>
-
-<%= link_to "Neues Rezept erstellen", new_recipe_path %>
+            <div class="card-body">
+              <p class="card-text"><%= recipe.title %></p>
+              <div class="d-flex justify-content-center">
+                <div class="btn-group">
+                  <%= link_to "Ansehen", recipe_path(recipe) , class: 'btn btn-sm btn-outline-secondary' %>
+                  <%= link_to "Bearbeiten", edit_recipe_path(recipe) , class: 'btn btn-sm btn-outline-secondary' %>
+                  <%= link_to "Löschen", recipe, method: :delete, data: {confirm: "Bist du sicher?"}, class: 'btn btn-sm btn-outline-danger' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

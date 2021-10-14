@@ -6,7 +6,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-images = Dir.new(Rails.root.to_s + "/app/assets/images/seed_images").select {|i| i.include? "jpg" }
+images = Dir.new(Rails.root.to_s + "/app/assets/images/seed_images").select {|i| i.include? "webp" }
 index = -1
 10.times do
   index += 1

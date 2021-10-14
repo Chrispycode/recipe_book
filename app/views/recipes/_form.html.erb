@@ -1,40 +1,42 @@
 <%= form_for recipe do |f| %>
-  <% if  recipe.errors.any? %>
+  <% if recipe.errors.any? %>
     <div id="error_explanation">
       <ul>
-        <%  recipe.errors.each do |error| %>
+        <% recipe.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+  <div class="mb-3">
+    <%= f.label :title, class: 'form-label' %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :author %>
-    <%= f.text_field :author %>
+  <div class="mb-3">
+    <%= f.label :author, class: 'form-label' %>
+    <%= f.text_field :author, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+  <div class="mb-3">
+    <%= f.label :description, class: 'form-label' %>
+    <%= f.text_area :description, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :image_url %>
-    <div>
-      <%= image_tag recipe.image, size: 50 if recipe.image%>
+  <div class="mb-3">
+    <%= f.label "Bild auswählen", class: 'form-label' %>
+    <div class="input-group">
+      <%= f.file_field :uploaded_image, class: 'form-control' %>
     </div>
-    <%= f.file_field :uploaded_image %>
-    <div>or</div>
-    <%= f.text_field :image_url %>
+    <div>oder Bild-URL angeben</div>
+    <%= f.text_field :image_url, class: 'form-control', placeholder: 'Bild URL' %>
   </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="d-flex justify-content-between">
+    <div class="btn-group">
+      <%= link_to 'Zurück', root_path, class: 'btn btn-outline-secondary' %>
+      <%= link_to "Ansehen", recipe_path(recipe) , class: 'btn btn-outline-secondary' unless recipe.new_record? %>
+    </div>
+    <%= f.submit "Speichern", class: 'btn btn-primary' %>
   </div>
 <% end %>

@@ -1,15 +1,21 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[ show edit update destroy ]
 
-  def show
+  def recent
+    head :ok
   end
+
+  def categories
+    head :ok
+  end
+
+  def show; end
 
   def new
     @recipe = Recipe.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @recipe = Recipe.new(recipe_params)
