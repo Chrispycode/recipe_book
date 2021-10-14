@@ -4,7 +4,9 @@
     <%= link_to recipe do %>
       <div>
         <%= recipe.title %>
-        <%= image_tag recipe.image_url, size: 50 %>
+        <%= image_tag recipe.image, size: 50 %>
       </div>
     <% end %>
 <% end %>
+
+<%= link_to "Neues Rezept erstellen", new_recipe_path %>
