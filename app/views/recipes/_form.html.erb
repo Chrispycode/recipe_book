@@ -1,4 +1,4 @@
-<%= form_for recipe do |f| %>
+<%= form_with model: recipe, local: true do |f| %>
   <% if recipe.errors.any? %>
     <div id="error_explanation">
       <ul>
@@ -32,6 +32,16 @@
     <div>oder Bild-URL angeben</div>
     <%= f.text_field :image_url, class: 'form-control', placeholder: 'Bild URL' %>
   </div>
+
+
+  <div class="mb-3">
+    <%= f.label "Zutaten", class: 'form-label' %>
+    <%= f.fields_for :ingredients do |ri| %>
+      <%= render "ingredient_fields", f: ri %>
+    <% end %>
+    <%= link_to_add_fields "Zutaten hinzufügen", f, :ingredients %>
+  </div>
+
   <div class="d-flex justify-content-between">
     <div class="btn-group">
       <%= link_to 'Zurück', root_path, class: 'btn btn-outline-secondary' %>

@@ -1,0 +1,9 @@
+<div class="nested-fields">
+  <%= f.hidden_field :_destroy %>
+  <div class="input-group mb-3">
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Ingwer' %>
+    <%= f.number_field :amount, class: 'form-control', placeholder: '100', step: :any %>
+    <%= f.select :unit, %w(g ml EL TL), {:include_blank => "Maßeinheit auswählen"}, {:class => "some_class"} %>
+  </div>
+  <%= link_to "Löschen", '#', class: "remove_fields btn btn-danger btn-sm mb-3 float-end" %>
+</div>

@@ -1,6 +1,9 @@
 class Recipe < ApplicationRecord
-  validates_presence_of :title, :description, :author
   has_one_attached :uploaded_image
+  has_many :ingredients, inverse_of: :recipe
+  accepts_nested_attributes_for :ingredients, allow_destroy: true, reject_if: :all_blank
+
+  validates_presence_of :title, :description, :author
   validate :presence_of_image
 
   def image
