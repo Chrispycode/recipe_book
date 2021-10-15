@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <header>
       <div class="navbar navbar-expand-sm navbar-dark bg-dark shadow-sm">
         <div class="container-fluid">
@@ -34,10 +34,10 @@
         </div>
       </div>
     </header>
-    <main class="container-lg pt-4">
+    <main class="container-lg pt-4 flex-grow-1">
       <%= yield %>
     </main>
-    <footer class="py-3 border-top">
+    <footer class="footer py-3 border-top">
       <ul class="nav d-flex justify-content-center">
         <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link px-2 text-muted"%></li>
         <li class="nav-item"><%= link_to "Aktuelles", recent_path, class: "nav-link px-2 text-muted"%></li>
