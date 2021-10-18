@@ -12,10 +12,11 @@
       <% @recipes.each do |recipe| %>
         <div class="col">
           <div class="card shadow-sm">
-            <%= image_tag recipe.image, class: 'img-fluid' %>
-
+            <%= link_to recipe_path(recipe) do |variable| %>
+              <%= image_tag recipe.image, class: 'img-fluid', alt: recipe.title, width: "640", height: "360" %>
+            <% end %>
             <div class="card-body">
-              <p class="card-text"><%= recipe.title %></p>
+              <h3 class="card-text text-center mb-3"><%= recipe.title %></h3>
               <div class="d-flex justify-content-center">
                 <div class="btn-group">
                   <%= link_to "Ansehen", recipe_path(recipe) , class: 'btn btn-sm btn-outline-secondary' %>

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :recipes
 
+  resources :reviews
+
   get 'recent', to: 'recipes#recent'
   get 'categories', to: 'recipes#categories'
   get 'imprint', to: 'homepage#imprint'

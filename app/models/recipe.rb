@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
   has_one_attached :uploaded_image
-  has_many :ingredients, inverse_of: :recipe
+  has_many :ingredients, inverse_of: :recipe, dependent: :destroy
+  has_many :reviews, inverse_of: :recipe, dependent: :destroy
   accepts_nested_attributes_for :ingredients, allow_destroy: true, reject_if: :all_blank
 
   validates_presence_of :title, :description, :author

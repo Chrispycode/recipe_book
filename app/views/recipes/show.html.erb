@@ -29,7 +29,28 @@
           </ul>
         <% end %>
       </p>
-      <%= link_to 'Zurück', :back, class: 'btn btn-outline-secondary' %>
+      <div class="d-flex flex-wrap">
+        <div class="stars me-2">
+          <i class="bi bi-star"></i>
+          <i class="bi bi-star"></i>
+          <i class="bi bi-star"></i>
+          <i class="bi bi-star"></i>
+          <i class="bi bi-star"></i>
+        </div>
+        <span id="review_result" class="me-2" data-recipe-id="<%= @recipe.id %>" data-review="1">
+          <%= @recipe.reviews.average(:rating)&.round(2) %>
+        </span>
+        <span id="review_count" data-review-count="<%= @recipe.reviews.size %>">
+          <%= "(#{@recipe.reviews.size} Bewertungen)" %>
+        </span>
+      </div>
+      <div class="container p-0 m-0">
+        <div id="post_review" class="mt-2 btn btn-sm btn-primary disabled">Bewertung Absenden</div>
+      </div>
+      <div class="btn-group mt-3">
+        <%= link_to 'Zurück', :back, class: 'btn btn-outline-secondary' %>
+        <%= link_to "Bearbeiten", edit_recipe_path(@recipe) , class: 'btn btn-outline-secondary' %>
+      </div>
     </div>
   </div>
 </div>

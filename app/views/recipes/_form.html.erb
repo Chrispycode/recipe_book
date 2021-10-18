@@ -35,7 +35,7 @@
 
 
   <div class="mb-3">
-    <%= f.label "Zutaten", class: 'form-label' %>
+    <h3>Zutaten</h3>
     <%= f.fields_for :ingredients do |ri| %>
       <%= render "ingredient_fields", f: ri %>
     <% end %>
@@ -44,7 +44,7 @@
 
   <div class="d-flex justify-content-between">
     <div class="btn-group">
-      <%= link_to 'Zurück', root_path, class: 'btn btn-outline-secondary' %>
+      <%= link_to 'Zurück', :back, class: 'btn btn-outline-secondary' %>
       <%= link_to "Ansehen", recipe_path(recipe) , class: 'btn btn-outline-secondary' unless recipe.new_record? %>
     </div>
     <%= f.submit "Speichern", class: 'btn btn-primary' %>

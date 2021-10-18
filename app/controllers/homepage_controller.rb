@@ -1,6 +1,6 @@
 class HomepageController < ApplicationController
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.with_attached_uploaded_image.order(created_at: :desc)
   end
 
   def imprint

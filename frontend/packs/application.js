@@ -13,5 +13,7 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import 'bootstrap'
+import 'bootstrap-icons/font/bootstrap-icons'
 import './nested-forms/addFields'
 import './nested-forms/removeFields'
+import './review'

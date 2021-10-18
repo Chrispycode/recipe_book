@@ -6,7 +6,7 @@ RSpec.describe "recipes/show", type: :view do
       title: "Title",
       author: "Author",
       description: "MyText",
-      image_url: "Image Url"
+      image_url: '/images/seed_images/pexels-anna-guerrero-1765005.webp'
     ))
   end
 
@@ -15,6 +15,6 @@ RSpec.describe "recipes/show", type: :view do
     expect(rendered).to match(/Title/)
     expect(rendered).to match(/Author/)
     expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/Image Url/)
+    expect(rendered).to match('/images/seed_images/pexels-anna-guerrero-1765005.webp')
   end
 end
