@@ -1,24 +1,38 @@
-# README
+##### Prerequisites
+install Ruby [3.0.2](https://www.ruby-lang.org/en/documentation/installation/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+install [yarn](https://yarnpkg.com/getting-started/install)
 
-Things you may want to cover:
+##### 1. Check out the repository
 
-* Ruby version
+```bash
+git clone git@github.com/Chrispycode/recipe_book.git
+```
 
-* System dependencies
+##### 2. Setup rails and Webpacker
+Run the following commands setup rails and Webpacker.
 
-* Configuration
+```bash
+gem install bundler:2.2.22
+bundle
+yarn
+```
 
-* Database creation
+##### 3. Create and setup the database
 
-* Database initialization
+Run the following command to create and setup the database.
 
-* How to run the test suite
+```ruby
+rails db:setup
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+##### 4. Start the Rails server with Webpacker
 
-* Deployment instructions
+You can start the rails server and webpacker separately using the commands below.
 
-* ...
+```ruby
+rails s
+bin/webpack-dev-server
+```
+
+And now you can visit the site with the URL http://localhost:3000
