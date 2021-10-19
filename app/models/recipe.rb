@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Recipe < ApplicationRecord
   has_one_attached :uploaded_image
   has_many :ingredients, inverse_of: :recipe, dependent: :destroy
@@ -15,9 +17,33 @@ class Recipe < ApplicationRecord
 
   protected
 
+  def working_url?
+    uri = URI.parse(image_url)
+    return false unless uri.is_a?(URI::HTTP) && !uri.host.nil?
+
+    req = Net::HTTP.new(uri.host, uri.port)
+    req.use_ssl = true
+    res = req.request_head(uri.path)
+    res.code == '200'
+  rescue URI::InvalidURIError, SocketError
+    false
+  end
+
   def presence_of_image
-    return if uploaded_image.attached?
-    return if image_url.present?
-    errors.add(:image_url, "muss ausgefüllt werden")
+    return errors.add(:image_url, 'muss ausgefüllt werden') unless image_url.present? || uploaded_image.attached?
+
+    attached_image? if uploaded_image.attached?
+    return if uploaded_image.attached? && image_url.blank?
+    return errors.add(:image_url, 'must have an image extension') unless image_url.match(/\.(gif|jpe?g|png|webp)$/)
+    return if working_url?
+
+    errors.add(:image_url, 'URL ist nicht erreichbar')
+  end
+
+  def attached_image?
+    return errors.add(:image_url, 'muss ausgefüllt werden') unless uploaded_image.attached?
+    return if uploaded_image.content_type.in?(%w(image/jpeg image/png image/webp image/gif))
+
+    errors.add(:image_url, 'darf nur diese formate haben jpeg, png, webp, gif')
   end
 end
