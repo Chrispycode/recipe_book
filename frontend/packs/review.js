@@ -23,23 +23,7 @@ class addReview {
       return response.json()
     }).then((data) => {
       console.log(data)
-    }).catch(error => {
-      console.error("error", error)
-    })
-  }
-
-  getAverageReview(recipeId) {
-    fetch(`/reviews?recipe_id=${recipeId}`, {
-      headers: {
-        'content-type': 'application/json',
-        'X-CSRF-Token': this.csrfToken
-      }
-    }).then(response => {
-      if (!response.ok) { throw response; }
-      return response.json()
-    }).then((data) => {
-      console.log(data)
-      this.reviewResult.textContent = data
+      this.reviewResult.textContent = data;
     }).catch(error => {
       console.error("error", error)
     })
@@ -69,7 +53,6 @@ class addReview {
       event.preventDefault();
 
       this.postReview(recipeId, rating);
-      this.getAverageReview(recipeId);
       reviewCount.dataset.reviewCount = parseInt(reviewCount.dataset.reviewCount) + 1;
       reviewCount.textContent = `(${reviewCount.dataset.reviewCount} Bewertungen)`
       sessionStorage.setItem('ReviewOnce','true');
