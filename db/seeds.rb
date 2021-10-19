@@ -22,12 +22,12 @@ end
 
 10.times do
   images.each do |image|
-    Recipe.create(
+    Recipe.new(
       title:       Faker::Food.dish,
       author:      Faker::Name.name,
       description: Faker::Food.description,
       image_url:   "seed_images/#{image}",
       ingredients_attributes: ingredients
-    )
+    ).save(validate: false)
   end
 end
