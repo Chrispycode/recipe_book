@@ -1,0 +1,51 @@
+services:
+  app: &app
+    build: .
+    image: recipe_book
+    volumes:
+      - .:/usr/src/app
+      - packs:/usr/src/app/public/packs/
+      - packs-test:/usr/src/app/public/packs-test/
+      - node_modules:/usr/src/app/node_modules/
+      - gem_cache:/usr/src/local/bundle/gems/
+    profiles:
+      - build
+    tmpfs:
+      - /tmp
+
+  web:
+    <<: *app
+    command: bundle exec rails server -b 0.0.0.0
+    ports:
+      - "3000:3000"
+      - "4000:4000"
+    depends_on:
+      - webpack
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=webpack
+    profiles:
+      - server
+
+  webpack:
+    <<: *app
+    command: ./bin/webpack-dev-server
+    ports:
+      - "3035:3035"
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+      - NODE_ENV=development
+      - RAILS_ENV=development
+    profiles:
+      - server
+
+  seed_db:
+    <<: *app
+    command: rake db:drop db:setup
+    profiles:
+      - tools
+
+volumes:
+  node_modules:
+  packs:
+  packs-test:
+  gem_cache:
