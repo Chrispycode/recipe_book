@@ -1,4 +1,4 @@
-FROM ruby:3.0.2
+FROM ruby:3.1.0
 
 # Ensure latest packages for Yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=true apt-key add - && \
